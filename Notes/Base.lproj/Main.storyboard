@@ -1,24 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zw2-0M-ntU">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--NotesVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NotesVC" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qci-w2-S2y">
+                                <rect key="frame" x="8" y="64" width="359" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notesCellID" id="MZc-n4-se9">
+                                        <rect key="frame" x="0.0" y="28" width="359" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MZc-n4-se9" id="OV7-T8-RM4">
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="aia-zP-Atk" kind="show" identifier="detailVC" id="RSx-6L-I9u"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="TpO-bc-spd"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7OJ-hy-7cd"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSR-Rg-yub">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="qZi-eb-Q63"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="9Zl-Rf-52c">
+                                        <connections>
+                                            <action selector="onDelete:" destination="BYZ-38-t0r" id="ukY-32-FeW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="Z8h-zN-5AA"/>
+                                    <barButtonItem systemItem="compose" id="rul-lv-kGd">
+                                        <connections>
+                                            <action selector="onPost:" destination="BYZ-38-t0r" id="GuS-KL-mVu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fSR-Rg-yub" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Iug-e4-oFc"/>
+                            <constraint firstItem="qci-w2-S2y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OVE-J7-yPs"/>
+                            <constraint firstAttribute="bottom" secondItem="fSR-Rg-yub" secondAttribute="bottom" id="QDg-MN-Xab"/>
+                            <constraint firstAttribute="trailing" secondItem="fSR-Rg-yub" secondAttribute="trailing" id="SPh-9Q-Yau"/>
+                            <constraint firstItem="fSR-Rg-yub" firstAttribute="top" secondItem="qci-w2-S2y" secondAttribute="bottom" id="ZfU-t2-6g7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qci-w2-S2y" secondAttribute="trailing" constant="8" id="kYe-wp-faa"/>
+                            <constraint firstItem="qci-w2-S2y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="wYO-kU-88b"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="nIl-dR-3WJ">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="edit" id="9NZ-vL-lpY">
+                                <connections>
+                                    <action selector="onPut:" destination="BYZ-38-t0r" id="T8K-M4-TDv"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="LN7-eH-lCS">
+                                <connections>
+                                    <action selector="onReload:" destination="BYZ-38-t0r" id="dnA-3B-0DC"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="qci-w2-S2y" id="h8E-77-VgI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="992.79999999999995" y="27.436281859070466"/>
+        </scene>
+        <!--Note DetailVC-->
+        <scene sceneID="ttw-s3-LgY">
+            <objects>
+                <viewController id="aia-zP-Atk" customClass="NoteDetailVC" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R09-qK-hmV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="C0D-gd-qXK">
+                                <rect key="frame" x="8" y="72" width="359" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="C0D-gd-qXK" firstAttribute="leading" secondItem="38j-iP-HIk" secondAttribute="leading" constant="8" id="5e5-et-cfN"/>
+                            <constraint firstItem="C0D-gd-qXK" firstAttribute="top" secondItem="38j-iP-HIk" secondAttribute="top" constant="8" id="kRt-b8-AKF"/>
+                            <constraint firstItem="38j-iP-HIk" firstAttribute="trailing" secondItem="C0D-gd-qXK" secondAttribute="trailing" constant="8" id="zpT-iB-Aap"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="38j-iP-HIk"/>
+                    </view>
+                    <connections>
+                        <outlet property="noteTV" destination="C0D-gd-qXK" id="GV1-cC-GYw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyS-7w-4mW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800.8" y="26.53673163418291"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fwV-gV-gfT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zw2-0M-ntU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dMp-Xk-aef">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gHY-am-iIX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RE2-hQ-Neb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53.600000000000001" y="27.436281859070466"/>
         </scene>
     </scenes>
 </document>
