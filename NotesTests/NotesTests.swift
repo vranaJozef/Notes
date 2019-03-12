@@ -18,17 +18,13 @@ class NotesTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testURL() {
+        let url = URL(string: "https://private-anon-19453e7412-note10.apiary-mock.com/notes")!
+        let request = URLRequest(url: url)
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            XCTAssert(error == nil, "Error")
         }
+        dataTask.resume()
     }
-
 }

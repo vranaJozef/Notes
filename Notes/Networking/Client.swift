@@ -23,20 +23,22 @@ open class Client {
     public func load<A, APIError>(resource: Resource<A, APIError>,
                                      completion: @escaping (Result<A, APIError>) ->()) -> URLSessionDataTask? {
         
+        if !Reachability.isConnectedToNetwork() {
+            completion(.failure(.noInternetConnection))
+            return nil
+        }
+        
         var newResouce = resource
         newResouce.params = newResouce.params.merging(commonParams) { spec, common in
             return spec
         }
         
         let request = URLRequest(baseUrl: baseUrl, resource: newResouce)
-        
         let task = URLSession.shared.dataTask(with: request) { data, response, _ in
-            // Parsing incoming data
             guard let response = response as? HTTPURLResponse else {
                 completion(.failure(.other))
                 return
-            }
-                
+            }                
             if (200..<300) ~= response.statusCode {
                 if response.statusCode == 204 {
                     completion(Result(value: data.flatMap(resource.parse), or: nil))
@@ -51,9 +53,7 @@ open class Client {
         }
         
         task.resume()
-        
         return task
-        
     }
 }
 

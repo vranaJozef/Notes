@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="aia-zP-Atk" kind="show" identifier="detailVC" id="RSx-6L-I9u"/>
+                                            <segue destination="aia-zP-Atk" kind="show" identifier="detailNoteVC" id="RSx-6L-I9u"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -46,17 +46,22 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem systemItem="trash" id="9Zl-Rf-52c">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="onDelete:" destination="BYZ-38-t0r" id="ukY-32-FeW"/>
+                                            <action selector="onDeleteAllNotes:" destination="BYZ-38-t0r" id="vcX-xv-hC0"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="flexibleSpace" id="Z8h-zN-5AA"/>
+                                    <barButtonItem systemItem="flexibleSpace" id="Z8h-zN-5AA">
+                                        <color key="tintColor" red="0.96552973990000002" green="0.36884731050000003" blue="0.16660022739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="compose" id="rul-lv-kGd">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="onPost:" destination="BYZ-38-t0r" id="GuS-KL-mVu"/>
+                                            <segue destination="Lw5-RA-lMG" kind="show" identifier="createNoteVC" id="UyE-fU-5rC"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="0.96552973990000002" green="0.36884731050000003" blue="0.16660022739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,18 +78,12 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="nIl-dR-3WJ">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="edit" id="9NZ-vL-lpY">
-                                <connections>
-                                    <action selector="onPut:" destination="BYZ-38-t0r" id="T8K-M4-TDv"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="LN7-eH-lCS">
-                                <connections>
-                                    <action selector="onReload:" destination="BYZ-38-t0r" id="dnA-3B-0DC"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="LN7-eH-lCS">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onReload:" destination="BYZ-38-t0r" id="dnA-3B-0DC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -94,6 +93,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="992.79999999999995" y="27.436281859070466"/>
+        </scene>
+        <!--Note CreateVC-->
+        <scene sceneID="Gho-41-OKJ">
+            <objects>
+                <viewController id="Lw5-RA-lMG" customClass="NoteCreateVC" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JKh-x4-BM4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5fi-C8-h7F">
+                                <rect key="frame" x="8" y="72" width="359" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.96552973990000002" green="0.36884731050000003" blue="0.16660022739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="27G-7e-o8X" firstAttribute="trailing" secondItem="5fi-C8-h7F" secondAttribute="trailing" constant="8" id="ZXv-NM-2Qr"/>
+                            <constraint firstItem="5fi-C8-h7F" firstAttribute="top" secondItem="27G-7e-o8X" secondAttribute="top" constant="8" id="pPq-cv-wGv"/>
+                            <constraint firstItem="5fi-C8-h7F" firstAttribute="leading" secondItem="27G-7e-o8X" secondAttribute="leading" constant="8" id="vdn-Fy-6tw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="27G-7e-o8X"/>
+                    </view>
+                    <connections>
+                        <outlet property="noteTV" destination="5fi-C8-h7F" id="ywN-5k-fdG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rXS-2l-qiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1797.5999999999999" y="-652.62368815592208"/>
         </scene>
         <!--Note DetailVC-->
         <scene sceneID="ttw-s3-LgY">
@@ -106,6 +137,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="C0D-gd-qXK">
                                 <rect key="frame" x="8" y="72" width="359" height="33"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.96552973990000002" green="0.36884731050000003" blue="0.16660022739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -145,4 +177,5 @@
             <point key="canvasLocation" x="53.600000000000001" y="27.436281859070466"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
