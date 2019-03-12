@@ -39,18 +39,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="7OJ-hy-7cd"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Mkb-y2-XK6">
+                                <rect key="frame" x="177.5" y="333.5" width="20" height="20"/>
+                            </activityIndicatorView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSR-Rg-yub">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="qZi-eb-Q63"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem systemItem="trash" id="9Zl-Rf-52c">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="onDeleteAllNotes:" destination="BYZ-38-t0r" id="vcX-xv-hC0"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="Z8h-zN-5AA">
                                         <color key="tintColor" red="0.96552973990000002" green="0.36884731050000003" blue="0.16660022739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </barButtonItem>
@@ -66,6 +63,8 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Mkb-y2-XK6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7ey-Lc-opk"/>
+                            <constraint firstItem="Mkb-y2-XK6" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="BH7-qM-KEH"/>
                             <constraint firstItem="fSR-Rg-yub" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Iug-e4-oFc"/>
                             <constraint firstItem="qci-w2-S2y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OVE-J7-yPs"/>
                             <constraint firstAttribute="bottom" secondItem="fSR-Rg-yub" secondAttribute="bottom" id="QDg-MN-Xab"/>
@@ -87,6 +86,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Mkb-y2-XK6" id="48K-gA-sJA"/>
                         <outlet property="tableView" destination="qci-w2-S2y" id="h8E-77-VgI"/>
                     </connections>
                 </viewController>

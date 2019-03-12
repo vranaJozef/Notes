@@ -21,6 +21,7 @@ class NotesVC: UIViewController, NotesManagerDelegate, NoteDetailVCDelegate, Not
     let cellID = "notesCellID"
     let refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Lifecycle
     
@@ -32,6 +33,7 @@ class NotesVC: UIViewController, NotesManagerDelegate, NoteDetailVCDelegate, Not
         self.tableView.refreshControl = self.refreshControl
         self.tableView.tableFooterView = UIView(frame: .zero)
         
+        self.activityIndicator.startAnimating()
         self.notesManager.delegate = self
         self.notesManager.getAllNotes { error in
             if let error = error {
@@ -69,6 +71,7 @@ class NotesVC: UIViewController, NotesManagerDelegate, NoteDetailVCDelegate, Not
     }
 
     @IBAction func onReload(_ sender: UIBarButtonItem) {
+        self.activityIndicator.startAnimating()
         self.loadNotes()
     }
             
@@ -87,15 +90,12 @@ class NotesVC: UIViewController, NotesManagerDelegate, NoteDetailVCDelegate, Not
             }
         }
     }
-    
-    @IBAction func onDeleteAllNotes(_ sender: UIBarButtonItem) {
-        self.notesManager.deleteAllNotes()
-    }
-    
+        
     // MARK: - UI handling 
     
     func updateUI() {
         DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
             self.tableView.reloadData()
         }
     }

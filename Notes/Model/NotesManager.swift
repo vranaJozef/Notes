@@ -97,9 +97,5 @@ class NotesManager {
                 completion(nil)
             }
         }
-    }
-    
-    func deleteAllNotes() {
-        self.notes?.removeAll()
-    }
+    }    
 }
