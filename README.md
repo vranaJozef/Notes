@@ -5,5 +5,5 @@ Notes is really simple and easy to use app.
 * To delete the note, swipe left the note and hit delete.
 * To delete all notes, click on the icon at the bottom left.
 
-Right it down!
+Write it down!
 
