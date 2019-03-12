@@ -120,16 +120,20 @@ class NotesVC: UIViewController, NotesManagerDelegate, NoteDetailVCDelegate, Not
         self.notes = notes
     }
     
-    func didUpdateNote(_ error: WebError<APIError>?) {
-        if let error = error {
-            self.handleError(error)
-        }
-    }
+    // MARK: - NoteCreate delegate
     
     func didPostNote(_ error: WebError<APIError>?) {
         if let error = error {
             self.handleError(error)
         } 
+    }
+    
+    // MARK: - NoteDetail delegate
+    
+    func didUpdateNote(_ error: WebError<APIError>?) {
+        if let error = error {
+            self.handleError(error)
+        }
     }
     
     // MARK: - Error handling

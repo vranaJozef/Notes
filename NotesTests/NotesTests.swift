@@ -12,19 +12,25 @@ import XCTest
 class NotesTests: XCTestCase {
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testURL() {
+    func testGET() {
         let url = URL(string: "https://private-anon-19453e7412-note10.apiary-mock.com/notes")!
         let request = URLRequest(url: url)
+        let testExpectation = expectation(description: "GET \(url)")
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            XCTAssert(error == nil, "Error")
+            let httpResponse = response as? HTTPURLResponse
+            XCTAssert(httpResponse?.statusCode == 200, "Status code is not matching the server data")
+            testExpectation.fulfill()
         }
         dataTask.resume()
+        waitForExpectations(timeout: 5){ error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
     }
 }
