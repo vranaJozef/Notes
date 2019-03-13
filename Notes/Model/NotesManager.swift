@@ -36,17 +36,14 @@ class NotesManager {
         }
     }
     
-    func getNoteByID(id: Int, completion: @escaping ((_ error: WebError<APIError>?) -> Void)) {
+    func getNoteByID(id: Int, completion: @escaping ((_ note: Note?, _ error: WebError<APIError>?) -> Void)) {
         self.notesTask?.cancel()
         let resource = RequestBuilder.getNoteByID(id)
         self.notesTask = client.load(resource: resource) {[weak self] response in
             if let note = response.value {
-                completion(nil)
-                if let index = self?.notes?.index(where: {$0.id == id}) {
-                    self?.notes?[index] = note
-                }
+                completion(note, nil)
             } else if let error = response.error {
-                completion(error)
+                completion(nil, error)
             }
             
         }
